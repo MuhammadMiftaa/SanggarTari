@@ -15,11 +15,12 @@ const nextConfig = {
     domains: [
       "images.unsplash.com",
       "assets.aceternity.com",
-      "pbs.twimg.com", 
+      "pbs.twimg.com",
       "jkt48.com",
       "res.cloudinary.com",
     ],
   },
+  output: "standalone",
 };
 
 export default withPWA(nextConfig);
