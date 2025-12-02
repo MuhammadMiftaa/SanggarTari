@@ -10,6 +10,17 @@ WORKDIR /app
 
 # Install dependencies with bun
 FROM base AS deps
+
+RUN apt-get update && apt-get install -y \
+    python3 \
+    build-essential \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY package.json bun.lock* ./
 RUN bun install --no-save --frozen-lockfile
 
@@ -54,6 +65,15 @@ RUN bun run build
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    libcairo2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libjpeg62-turbo \
+    libgif7 \
+    librsvg2-2 \
+    && rm -rf /var/lib/apt/lists/*
 
 ARG NEXT_PUBLIC_GITHUB_TOKEN
 ARG MONGODB_URI
