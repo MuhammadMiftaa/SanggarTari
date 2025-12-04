@@ -15,7 +15,7 @@ export default function DeleteMemberCell({member}: {member: MemberTypeZod}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
-
+ 
   useEffect(() => {
     if (success) {
       const timeout = setTimeout(() => {
